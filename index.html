@@ -275,9 +275,19 @@
         padding: 4rem 1.5rem;
       }
       
-      .feature-cards { 
-        grid-template-columns: 1fr; 
-      }
+        .feature-cards {
+    display: flex;            /* use flexbox */
+    flex-direction: column;   /* stack cards vertically */
+    align-items: center;      /* center horizontally */
+    gap: 1.5rem;              /* spacing between cards */
+    width: 350px;             /* desired width */
+    margin: 0 auto;           /* center container */
+  }
+
+  .card {
+    width: 100%;              /* make each card fill container */
+    max-width: 350px;         /* optional: maintain max width */
+  }
       
      .hero-buttons { 
     display: flex;           /* needed for flex layout */
@@ -294,6 +304,84 @@
     max-width: 250px;        /* optional max width */
   }
 }
+/* Tablet Styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .navbar {
+    padding: 1rem 3rem;       /* reduce padding slightly */
+  }
+
+  nav ul {
+    display: flex;            /* keep the menu horizontal */
+    gap: 1.5rem;              /* smaller gap than desktop */
+  }
+
+  nav a {
+    padding: 0.5rem 0.8rem;   /* reduce padding for tablet */
+    font-size: 0.95rem;       /* slightly smaller text */
+  }
+
+  .burger {
+    display: none;            /* hide burger on tablet */
+  }
+
+  .logo h2 {
+    font-size: 0.95rem;       /* slightly smaller logo text */
+  }
+
+  .logo p {
+    font-size: 0.65rem;
+  }
+  .features {
+    padding: 4rem 3rem;  /* slightly smaller padding */
+  }
+
+  .feature-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablet */
+    gap: 2rem;            /* spacing between cards */
+    justify-content: center; /* center the grid */
+    width: 100%;
+    max-width: 800px;      /* limit max width so it looks centered */
+    margin: 0 auto;        /* center horizontally */
+  }
+
+  .card {
+    width: 100%;           /* card fills the grid cell */
+    max-width: none;       /* remove 350px limit from mobile */
+  }
+
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 6rem 3rem 4rem 3rem;
+  }
+
+  .hero-text {
+    max-width: 90%;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-img img {
+    width: 250px;
+    margin-top: 1.5rem;
+  }
+
+  .hero-img::before {
+    width: 300px;
+    height: 300px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .hero-buttons a {
+    width: 70%;
+    max-width: 280px;
+  }
+}
+
   </style>
 </head>
 <body>
