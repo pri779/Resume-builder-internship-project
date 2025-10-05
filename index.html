@@ -121,21 +121,33 @@
     .menu-overlay {
       position: fixed;
       top: 0;
-      right: -100%;
-      width: 100%;
+      right: -75%;       /* hidden initially */
+      width: 75%;        /* menu width */
       height: 100%;
-      background: rgba(248, 210, 210, 0.98);
-      backdrop-filter: blur(5px);
+      background: #fff1f4;
       padding: 2rem 1.5rem;
-      transition: 0.4s ease;
+      transition: right 0.4s ease;
       z-index: 3000;
       display: flex;
       flex-direction: column;
       overflow-y: auto;
     }
-    
-    .menu-overlay.active { 
+
+    .menu-overlay.active {
       right: 0; 
+    }
+
+    /* Overlay covering the remaining 25% + page blur */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.2); /* ash color */
+      backdrop-filter: blur(3px);   /* blur the page */
+      z-index: 2999;
+      display: none;
     }
 
     .menu-header { 
@@ -232,159 +244,26 @@
 
     /* Mobile Styles */
     @media(max-width: 768px){
-      .navbar {
-        padding: 1rem 1.5rem;
-      }
-      
-      nav ul { 
-        display: none; 
-      }
-      
-      .burger { 
-        display: flex; 
-      }
-
-      .hero { 
-        flex-direction: column; 
-        text-align: center; 
-        padding: 6rem 1rem 4rem 1rem; 
-      }
-      
-      .hero-text { 
-        max-width: 100%; 
-      }
-      
-      .hero h1 { 
-        font-size: 2.2rem; 
-      }
-      
-      .hero-img::before { 
-        width: 250px; 
-        height: 250px; 
-        left: 50%; 
-        transform: translateX(-50%); 
-        top: 10; 
-      }
-      
-      .hero-img img { 
-        width: 200px; 
-        margin-top: 1rem; 
-      }
-      
-      .features {
-        padding: 4rem 1.5rem;
-      }
-      
-        .feature-cards {
-    display: flex;            /* use flexbox */
-    flex-direction: column;   /* stack cards vertically */
-    align-items: center;      /* center horizontally */
-    gap: 1.5rem;              /* spacing between cards */
-    width: 350px;             /* desired width */
-    margin: 0 auto;           /* center container */
-  }
-
-  .card {
-    width: 100%;              /* make each card fill container */
-    max-width: 350px;         /* optional: maintain max width */
-  }
-      
-     .hero-buttons { 
-    display: flex;           /* needed for flex layout */
-    flex-direction: column;  /* stack vertically */
-    align-items: center;     /* center horizontally */
-    justify-content: center; /* optional, centers vertically in container */
-    width: 100%;             /* full width for better alignment */
-    gap: 1rem;               /* space between buttons */
-    text-align: center;      /* just in case */
-  }
-
-  .hero-buttons a {
-    width: 80%;              /* make buttons a good size for mobile */
-    max-width: 250px;        /* optional max width */
-  }
-}
-/* Tablet Styles */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .navbar {
-    padding: 1rem 3rem;       /* reduce padding slightly */
-  }
-
-  nav ul {
-    display: flex;            /* keep the menu horizontal */
-    gap: 1.5rem;              /* smaller gap than desktop */
-  }
-
-  nav a {
-    padding: 0.5rem 0.8rem;   /* reduce padding for tablet */
-    font-size: 0.95rem;       /* slightly smaller text */
-  }
-
-  .burger {
-    display: none;            /* hide burger on tablet */
-  }
-
-  .logo h2 {
-    font-size: 0.95rem;       /* slightly smaller logo text */
-  }
-
-  .logo p {
-    font-size: 0.65rem;
-  }
-  .features {
-    padding: 4rem 3rem;  /* slightly smaller padding */
-  }
-
-  .feature-cards {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablet */
-    gap: 2rem;            /* spacing between cards */
-    justify-content: center; /* center the grid */
-    width: 100%;
-    max-width: 800px;      /* limit max width so it looks centered */
-    margin: 0 auto;        /* center horizontally */
-  }
-
-  .card {
-    width: 100%;           /* card fills the grid cell */
-    max-width: none;       /* remove 350px limit from mobile */
-  }
-
-  .hero {
-    flex-direction: column;
-    text-align: center;
-    padding: 6rem 3rem 4rem 3rem;
-  }
-
-  .hero-text {
-    max-width: 90%;
-  }
-
-  .hero h1 {
-    font-size: 2.5rem;
-  }
-
-  .hero-img img {
-    width: 250px;
-    margin-top: 1.5rem;
-  }
-
-  .hero-img::before {
-    width: 300px;
-    height: 300px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .hero-buttons a {
-    width: 70%;
-    max-width: 280px;
-  }
-}
-
+      .navbar { padding: 1rem 1.5rem; }
+      nav ul { display: none; }
+      .burger { display: flex; }
+      .hero { flex-direction: column; text-align: center; padding: 6rem 1rem 4rem 1rem; }
+      .hero-text { max-width: 100%; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero-img::before { width: 250px; height: 250px; left: 50%; transform: translateX(-50%); top: 10; }
+      .hero-img img { width: 200px; margin-top: 1rem; }
+      .features { padding: 4rem 1.5rem; }
+      .feature-cards { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; width: 350px; margin: 0 auto; }
+      .card { width: 100%; max-width: 350px; }
+      .hero-buttons { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; gap: 1rem; text-align: center; }
+      .hero-buttons a { width: 80%; max-width: 250px; }
+    }
   </style>
 </head>
 <body>
+
+  <!-- Overlay for blur effect -->
+  <div class="overlay" id="pageOverlay"></div>
 
   <!-- Navbar -->
   <header class="navbar">
@@ -474,17 +353,30 @@
     const burger = document.querySelector('.burger');
     const mobileMenu = document.getElementById('mobileMenu');
     const closeMenu = document.getElementById('closeMenu');
+    const overlay = document.getElementById('pageOverlay');
     const body = document.body;
 
+    // Open menu
     burger.addEventListener('click', () => {
       mobileMenu.classList.add('active');
       burger.classList.add('active');
+      overlay.style.display = 'block';
       body.style.overflow = 'hidden';
     });
-    
+
+    // Close menu
     closeMenu.addEventListener('click', () => {
       mobileMenu.classList.remove('active');
       burger.classList.remove('active');
+      overlay.style.display = 'none';
+      body.style.overflow = 'auto';
+    });
+
+    // Close menu on overlay click
+    overlay.addEventListener('click', () => {
+      mobileMenu.classList.remove('active');
+      burger.classList.remove('active');
+      overlay.style.display = 'none';
       body.style.overflow = 'auto';
     });
 
@@ -494,10 +386,12 @@
       item.addEventListener('click', () => {
         mobileMenu.classList.remove('active');
         burger.classList.remove('active');
+        overlay.style.display = 'none';
         body.style.overflow = 'auto';
       });
     });
 
+    // Scroll-to-top button
     const scrollTopBtn = document.getElementById('scrollTop');
     window.addEventListener('scroll', () => {
       if(window.scrollY > 300) scrollTopBtn.style.display='flex';
@@ -508,3 +402,4 @@
 
 </body>
 </html>
+
